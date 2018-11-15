@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import "./App.css";
 import axios from "axios";
 
+let body = document.querySelector("body");
+body.style.backgroundColor = "rgb(115, 168, 87)";
+console.log("body.style.backgroundColor is: ", body.style.backgroundColor);
+
 function getRandom() {
   return Math.floor(Math.random() * 102);
 }
@@ -40,11 +44,16 @@ class App extends Component {
       <div className="App">
         <div className="container">
           <div className="box">
+            <div className="quote">
+              <i className="fas fa-quote-left" />
+              {this.state.quotes ? (
+                <p className="quoteText">{this.state.quotes[random_number].quote}</p>
+              ) : null}
+              <i className="fas fa-quote-right" />
+            </div>
+
             {this.state.quotes ? (
-              <div>
-                <p>{this.state.quotes[random_number].quote}</p>{" "}
-                <p>{this.state.quotes[random_number].author}</p>
-              </div>
+              <p className="author">- {this.state.quotes[random_number].author}</p>
             ) : null}
 
             <button className="btn btn-secondary" onClick={this.generateNew}>
